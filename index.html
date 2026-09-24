@@ -238,28 +238,39 @@
 </div>
 <script>
     window.addEventListener('load', function(){
-        // 1. ดึงไฟล์ Patch อัตโนมัติ (ส่วนนี้คือโค้ดเดิมที่คุณทำสำเร็จแล้ว)
-        fetch('./patches/patch_th.bps')
-            .then(response => response.blob())
-            .then(blob => {
-                var file = new File([blob], "patch_th.bps");
-                var dataTransfer = new DataTransfer();
-                dataTransfer.items.add(file);
-                
-                var patchInput = document.getElementById('rom-patcher-input-file-patch');
-                patchInput.files = dataTransfer.files;
-                patchInput.dispatchEvent(new Event('change'));
-            })
-            .catch(error => console.error("Error loading patch:", error));
-            
-        // 2. โค้ดชุดใหม่: บังคับเปลี่ยนชื่อไฟล์ตอนที่ผู้เล่นกดปุ่ม Apply patch (ดาวน์โหลด)
-        if (typeof window.saveAs !== 'undefined') {
-            var originalSaveAs = window.saveAs;
-            window.saveAs = function(blob, filename) {
-                // เขียนทับชื่อไฟล์เดิมด้วยชื่อที่เราต้องการเป๊ะๆ
-                originalSaveAs(blob, "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes");
-            };
-        }
+        // 1. โหลดไฟล์ Patch อัตโนมัติ
+        setTimeout(function() {
+            fetch('./patches/patch_th.bps')
+                .then(function(response) {
+                    return response.blob();
+                })
+                .then(function(blob) {
+                    var file = new File([blob], "patch_th.bps");
+                    var dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    
+                    var patchInput = document.getElementById('rom-patcher-input-file-patch');
+                    patchInput.files = dataTransfer.files;
+                    
+                    // กระตุ้นให้ระบบของ RomPatcher รับรู้ว่ามีไฟล์เข้ามาแล้ว
+                    patchInput.dispatchEvent(new Event('change', { bubbles: true }));
+                })
+                .catch(function(error) {
+                    console.error("Error loading patch:", error);
+                });
+        }, 500);
+
+        // 2. ดักเปลี่ยนชื่อไฟล์ดาวน์โหลดอย่างปลอดภัย
+        var overrideName = setInterval(function() {
+            if (typeof window.saveAs === 'function') {
+                var originalSaveAs = window.saveAs;
+                window.saveAs = function(blob, filename) {
+                    // บังคับเปลี่ยนชื่อไฟล์ที่นี่
+                    originalSaveAs(blob, "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes");
+                };
+                clearInterval(overrideName); // หยุดการค้นหาเมื่อแก้ไขสำเร็จ
+            }
+        }, 500);
     });
 </script>
 </body></html>
