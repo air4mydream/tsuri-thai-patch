@@ -238,16 +238,21 @@
 </div>
 <script>
     window.addEventListener('load', function(){
-        setTimeout(function() {
-            var patchUrl = 'https://raw.githubusercontent.com/air4mydream/tsuri-thai-patch/main/patches/patch_th.bps';
-            
-            // ตรวจสอบว่าระบบใช้ตัวแปรชื่ออะไร แล้วสั่งให้โหลด Patch
-            if (typeof window.rompatcher !== 'undefined') {
-                window.rompatcher.fetchPatch(patchUrl);
-            } else if (typeof window.app !== 'undefined') {
-                window.app.fetchPatch(patchUrl);
-            }
-        }, 500); 
+        // ดึงไฟล์ตาม path จริงบน GitHub Pages ของคุณ
+        fetch('./patches/patch_th.bps')
+            .then(response => response.blob())
+            .then(blob => {
+                // สร้างไฟล์เสมือน
+                var file = new File([blob], "patch_th.bps");
+                var dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                
+                // นำไฟล์ไปใส่ในกล่อง Patch ที่ถูกซ่อนไว้ แล้วสั่งให้อัปเดต
+                var patchInput = document.getElementById('rom-patcher-input-file-patch');
+                patchInput.files = dataTransfer.files;
+                patchInput.dispatchEvent(new Event('change'));
+            })
+            .catch(error => console.error("Error loading patch:", error));
     });
 </script>
 </body></html>
