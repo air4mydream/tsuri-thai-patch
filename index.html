@@ -237,45 +237,32 @@
 	</div>
 </div>
 <script>
-    // 1. ดักจับการสั่งคลิกดาวน์โหลดทุกรูปแบบ (ครอบคลุม dispatchEvent ที่สคริปต์สมัยใหม่ใช้)
-    var targetName = "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes";
-
-    // ดักจับรูปแบบ .click() 
-    var originalClick = HTMLAnchorElement.prototype.click;
-    HTMLAnchorElement.prototype.click = function() {
-        if (this.download && this.download.toLowerCase().includes('.nes')) {
-            this.download = targetName;
-            this.setAttribute('download', targetName);
-        }
-        originalClick.apply(this, arguments);
-    };
-
-    // ดักจับรูปแบบ dispatchEvent (ตัวที่ RomPatcher.js น่าจะใช้)
-    var originalDispatch = EventTarget.prototype.dispatchEvent;
-    EventTarget.prototype.dispatchEvent = function(event) {
-        if (event.type === 'click' && this instanceof HTMLAnchorElement) {
-            if (this.download && this.download.toLowerCase().includes('.nes')) {
-                this.download = targetName;
-                this.setAttribute('download', targetName);
-            }
-        }
-        return originalDispatch.apply(this, arguments);
-    };
-
-    // 2. ระบบโหลดไฟล์ Patch อัตโนมัติ 
     window.addEventListener('load', function(){
+        // 1. บังคับติ๊กเลือกตั้งค่า "ใช้ชื่อไฟล์แพทช์เป็นชื่อไฟล์ผลลัพธ์" แบบเงียบๆ
+        var suffixCheckbox = document.getElementById('settings-output-suffix');
+        if (suffixCheckbox) {
+            suffixCheckbox.checked = true;
+        }
+
+        // 2. โหลดไฟล์ Patch อัตโนมัติ
         setTimeout(function() {
             fetch('./patches/patch_th.bps')
                 .then(function(response) {
                     return response.blob();
                 })
                 .then(function(blob) {
-                    var file = new File([blob], "patch_th.bps");
+                    // 3. ตั้งชื่อไฟล์แพทช์จำลองเป็นชื่อที่เราต้องการ (ใส่นามสกุล .bps)
+                    // ระบบของ RomPatcher จะนำชื่อนี้ไปใช้ และเปลี่ยน .bps เป็น .nes ให้เองตอนเซฟ
+                    var desiredName = "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).bps";
+                    var file = new File([blob], desiredName);
+                    
                     var dataTransfer = new DataTransfer();
                     dataTransfer.items.add(file);
                     
                     var patchInput = document.getElementById('rom-patcher-input-file-patch');
                     patchInput.files = dataTransfer.files;
+                    
+                    // สั่งให้ระบบรับรู้ว่าใส่ไฟล์แพทช์เรียบร้อยแล้ว
                     patchInput.dispatchEvent(new Event('change', { bubbles: true }));
                 })
                 .catch(function(error) {
