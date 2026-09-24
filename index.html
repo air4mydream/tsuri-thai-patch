@@ -37,16 +37,27 @@
 	<script type="text/javascript" src="./rom-patcher-js/RomPatcher.webapp.js"></script>
 	<script type="text/javascript" src="./webapp/webapp.js"></script>
 	<style>
-        /* บังคับซ่อนปุ่ม Creator mode ให้หายไป 100% */
-        #switch-container {
-            display: none !important;
-        }
-        
-        /* บังคับซ่อนกล่องเลือกไฟล์ Patch */
-        #rom-patcher-row-file-patch {
-            display: none !important;
-        }
-    </style>
+    /* ซ่อนปุ่ม Creator Mode อย่างเด็ดขาด */
+    #switch-container {
+        display: none !important;
+    }
+    
+    /* ซ่อนกล่องเลือกไฟล์ Patch */
+    #rom-patcher-row-file-patch {
+        display: none !important;
+    }
+
+    /* ซ่อนตัวเลือก Remove iNES header */
+    #rom-patcher-row-alter-header {
+        display: none !important;
+    }
+
+    /* ซ่อนคำอธิบายและ ROM requirements (ถ้ามีโผล่มา) */
+    #rom-patcher-row-patch-description, 
+    #rom-patcher-row-patch-requirements {
+        display: none !important;
+    }
+</style>
 </head>
 <body><div id="column">
 
