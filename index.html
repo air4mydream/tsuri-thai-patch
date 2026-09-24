@@ -238,36 +238,19 @@
 </div>
 <script>
     window.addEventListener('load', function(){
-        // 1. บังคับติ๊กเลือกตั้งค่า "ใช้ชื่อไฟล์แพทช์เป็นชื่อไฟล์ผลลัพธ์" แบบเงียบๆ
-        var suffixCheckbox = document.getElementById('settings-output-suffix');
-        if (suffixCheckbox) {
-            suffixCheckbox.checked = true;
-        }
-
-        // 2. โหลดไฟล์ Patch อัตโนมัติ
         setTimeout(function() {
             fetch('./patches/patch_th.bps')
-                .then(function(response) {
-                    return response.blob();
-                })
+                .then(function(response) { return response.blob(); })
                 .then(function(blob) {
-                    // 3. ตั้งชื่อไฟล์แพทช์จำลองเป็นชื่อที่เราต้องการ (ใส่นามสกุล .bps)
-                    // ระบบของ RomPatcher จะนำชื่อนี้ไปใช้ และเปลี่ยน .bps เป็น .nes ให้เองตอนเซฟ
-                    var desiredName = "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).bps";
-                    var file = new File([blob], desiredName);
-                    
+                    var file = new File([blob], "patch_th.bps");
                     var dataTransfer = new DataTransfer();
                     dataTransfer.items.add(file);
                     
                     var patchInput = document.getElementById('rom-patcher-input-file-patch');
                     patchInput.files = dataTransfer.files;
-                    
-                    // สั่งให้ระบบรับรู้ว่าใส่ไฟล์แพทช์เรียบร้อยแล้ว
                     patchInput.dispatchEvent(new Event('change', { bubbles: true }));
                 })
-                .catch(function(error) {
-                    console.error("Error loading patch:", error);
-                });
+                .catch(function(error) { console.error("Error loading patch:", error); });
         }, 500);
     });
 </script>
