@@ -237,8 +237,31 @@
 	</div>
 </div>
 <script>
+    // 1. ไม้ตาย: ดักจับตั้งแต่ขั้นตอนการสร้างลิงก์ดาวน์โหลดล่องหน
+    var originalCreateElement = document.createElement;
+    document.createElement = function(tagName) {
+        var element = originalCreateElement.call(document, tagName);
+        // ถ้าเบราว์เซอร์กำลังสร้างแท็กลิงก์ <a>
+        if (tagName.toLowerCase() === 'a') {
+            var originalClick = element.click;
+            // ดักตอนที่มันกำลังจะถูก "คลิก"
+            element.click = function() {
+                var currentName = this.download || this.getAttribute('download');
+                // เช็คว่าเป็นการโหลดไฟล์ .nes ใช่ไหม ถ้าใช่... เปลี่ยนชื่อเลย!
+                if (currentName && currentName.toLowerCase().endsWith('.nes')) {
+                    var targetName = "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes";
+                    this.download = targetName;
+                    this.setAttribute('download', targetName);
+                }
+                // สั่งให้คลิกดาวน์โหลดต่อตามปกติ
+                originalClick.apply(this, arguments);
+            };
+        }
+        return element;
+    };
+
+    // 2. ระบบโหลดไฟล์ Patch อัตโนมัติ (ชุดเดิมที่ทำงานได้แล้ว)
     window.addEventListener('load', function(){
-        // 1. โหลดไฟล์ Patch อัตโนมัติ
         setTimeout(function() {
             fetch('./patches/patch_th.bps')
                 .then(function(response) {
@@ -257,18 +280,6 @@
                     console.error("Error loading patch:", error);
                 });
         }, 500);
-
-        // 2. ดักเปลี่ยนชื่อไฟล์ดาวน์โหลดผ่านระบบลิงก์ของ HTML5
-        var originalClick = HTMLAnchorElement.prototype.click;
-        HTMLAnchorElement.prototype.click = function() {
-            // ตรวจสอบว่าระบบกำลังพยายามดาวน์โหลดไฟล์ .nes หรือไม่
-            if (this.download && this.download.toLowerCase().endsWith('.nes')) {
-                // บังคับเปลี่ยนชื่อเป็นชื่อที่เราต้องการ
-                this.download = "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes";
-            }
-            // ปล่อยให้ระบบทำการคลิกดาวน์โหลดต่อไปตามปกติ
-            originalClick.apply(this, arguments);
-        };
     });
 </script>
 </body></html>
