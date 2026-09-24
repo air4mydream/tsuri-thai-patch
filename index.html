@@ -57,6 +57,28 @@
     #rom-patcher-row-patch-requirements {
         display: none !important;
     }
+
+	/* ลูกเล่นรูปภาพหน้าปก */
+    .game-cover {
+        border-radius: 10px; /* ลบเหลี่ยมภาพให้ดูละมุนขึ้น */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* เงาใต้ภาพ */
+        animation: float 4s ease-in-out infinite; /* สั่งให้ภาพลอยขึ้นลงตลอดเวลา */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* ความนุ่มนวลตอนเอาเมาส์ชี้ */
+    }
+    
+    /* เอฟเฟกต์เมื่อเอาเมาส์ชี้ (Hover) */
+    .game-cover:hover {
+        transform: scale(1.05); /* ภาพขยายขึ้น 5% */
+        box-shadow: 0 10px 30px rgba(0, 191, 255, 0.7); /* เปล่งแสงสีฟ้าสว่าง */
+        cursor: pointer;
+    }
+
+    /* คำสั่งแอนิเมชันลอยตัว */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+        100% { transform: translateY(0px); }
+    }	
 </style>
 </head>
 <body><div id="column">
@@ -64,12 +86,11 @@
 
 <!-- HEADER -->
 <header style="text-align: center; padding: 20px 0;">
-    <!-- ใส่รูปภาพของเกม -->
-    <img src="Tsuri_Kichi_Sanpei.jpg" alt="Tsuri Kichi Sanpei" style="max-width: 350px; width: 100%; height: auto;">
+    <!-- เพิ่ม class="game-cover" เข้าไปในบรรทัดนี้ -->
+    <img src="Tsuri_Kichi_Sanpei.jpg" alt="Tsuri Kichi Sanpei" class="game-cover" style="max-width: 350px; width: 100%; height: auto;">
     
-    <!-- ใส่ชื่อเกมและข้อความเพิ่มเติม (เพิ่ม color: white; ลงไป) -->
-    <h2 style="margin-top: 10px; font-size: 24px; color: white;">Tsuri Kichi Sanpei - Blue Marlin Hen (TH)</h2>
-    <p style="color: #eeeeee;">แพทช์ภาษาไทย โดย John Lowery</p>
+    <h2 style="margin-top: 15px; font-size: 26px; color: white;">Tsuri Kichi Sanpei - Blue Marlin Hen (TH)</h2>
+    <p style="color: #eeeeee;">แพทช์ภาษาไทย (อัปเดตล่าสุด: 24/09/2026)</p>
 </header>
 
 <!-- APP -->
