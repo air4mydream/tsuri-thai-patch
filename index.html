@@ -238,21 +238,28 @@
 </div>
 <script>
     window.addEventListener('load', function(){
-        // ดึงไฟล์ตาม path จริงบน GitHub Pages ของคุณ
+        // 1. ดึงไฟล์ Patch อัตโนมัติ (ส่วนนี้คือโค้ดเดิมที่คุณทำสำเร็จแล้ว)
         fetch('./patches/patch_th.bps')
             .then(response => response.blob())
             .then(blob => {
-                // สร้างไฟล์เสมือน
                 var file = new File([blob], "patch_th.bps");
                 var dataTransfer = new DataTransfer();
                 dataTransfer.items.add(file);
                 
-                // นำไฟล์ไปใส่ในกล่อง Patch ที่ถูกซ่อนไว้ แล้วสั่งให้อัปเดต
                 var patchInput = document.getElementById('rom-patcher-input-file-patch');
                 patchInput.files = dataTransfer.files;
                 patchInput.dispatchEvent(new Event('change'));
             })
             .catch(error => console.error("Error loading patch:", error));
+            
+        // 2. โค้ดชุดใหม่: บังคับเปลี่ยนชื่อไฟล์ตอนที่ผู้เล่นกดปุ่ม Apply patch (ดาวน์โหลด)
+        if (typeof window.saveAs !== 'undefined') {
+            var originalSaveAs = window.saveAs;
+            window.saveAs = function(blob, filename) {
+                // เขียนทับชื่อไฟล์เดิมด้วยชื่อที่เราต้องการเป๊ะๆ
+                originalSaveAs(blob, "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes");
+            };
+        }
     });
 </script>
 </body></html>
