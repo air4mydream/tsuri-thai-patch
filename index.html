@@ -237,30 +237,32 @@
 	</div>
 </div>
 <script>
-    // 1. ไม้ตาย: ดักจับตั้งแต่ขั้นตอนการสร้างลิงก์ดาวน์โหลดล่องหน
-    var originalCreateElement = document.createElement;
-    document.createElement = function(tagName) {
-        var element = originalCreateElement.call(document, tagName);
-        // ถ้าเบราว์เซอร์กำลังสร้างแท็กลิงก์ <a>
-        if (tagName.toLowerCase() === 'a') {
-            var originalClick = element.click;
-            // ดักตอนที่มันกำลังจะถูก "คลิก"
-            element.click = function() {
-                var currentName = this.download || this.getAttribute('download');
-                // เช็คว่าเป็นการโหลดไฟล์ .nes ใช่ไหม ถ้าใช่... เปลี่ยนชื่อเลย!
-                if (currentName && currentName.toLowerCase().endsWith('.nes')) {
-                    var targetName = "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes";
-                    this.download = targetName;
-                    this.setAttribute('download', targetName);
-                }
-                // สั่งให้คลิกดาวน์โหลดต่อตามปกติ
-                originalClick.apply(this, arguments);
-            };
+    // 1. ดักจับการสั่งคลิกดาวน์โหลดทุกรูปแบบ (ครอบคลุม dispatchEvent ที่สคริปต์สมัยใหม่ใช้)
+    var targetName = "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes";
+
+    // ดักจับรูปแบบ .click() 
+    var originalClick = HTMLAnchorElement.prototype.click;
+    HTMLAnchorElement.prototype.click = function() {
+        if (this.download && this.download.toLowerCase().includes('.nes')) {
+            this.download = targetName;
+            this.setAttribute('download', targetName);
         }
-        return element;
+        originalClick.apply(this, arguments);
     };
 
-    // 2. ระบบโหลดไฟล์ Patch อัตโนมัติ (ชุดเดิมที่ทำงานได้แล้ว)
+    // ดักจับรูปแบบ dispatchEvent (ตัวที่ RomPatcher.js น่าจะใช้)
+    var originalDispatch = EventTarget.prototype.dispatchEvent;
+    EventTarget.prototype.dispatchEvent = function(event) {
+        if (event.type === 'click' && this instanceof HTMLAnchorElement) {
+            if (this.download && this.download.toLowerCase().includes('.nes')) {
+                this.download = targetName;
+                this.setAttribute('download', targetName);
+            }
+        }
+        return originalDispatch.apply(this, arguments);
+    };
+
+    // 2. ระบบโหลดไฟล์ Patch อัตโนมัติ 
     window.addEventListener('load', function(){
         setTimeout(function() {
             fetch('./patches/patch_th.bps')
