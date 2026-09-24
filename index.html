@@ -251,8 +251,6 @@
                     
                     var patchInput = document.getElementById('rom-patcher-input-file-patch');
                     patchInput.files = dataTransfer.files;
-                    
-                    // กระตุ้นให้ระบบของ RomPatcher รับรู้ว่ามีไฟล์เข้ามาแล้ว
                     patchInput.dispatchEvent(new Event('change', { bubbles: true }));
                 })
                 .catch(function(error) {
@@ -260,17 +258,17 @@
                 });
         }, 500);
 
-        // 2. ดักเปลี่ยนชื่อไฟล์ดาวน์โหลดอย่างปลอดภัย
-        var overrideName = setInterval(function() {
-            if (typeof window.saveAs === 'function') {
-                var originalSaveAs = window.saveAs;
-                window.saveAs = function(blob, filename) {
-                    // บังคับเปลี่ยนชื่อไฟล์ที่นี่
-                    originalSaveAs(blob, "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes");
-                };
-                clearInterval(overrideName); // หยุดการค้นหาเมื่อแก้ไขสำเร็จ
+        // 2. ดักเปลี่ยนชื่อไฟล์ดาวน์โหลดผ่านระบบลิงก์ของ HTML5
+        var originalClick = HTMLAnchorElement.prototype.click;
+        HTMLAnchorElement.prototype.click = function() {
+            // ตรวจสอบว่าระบบกำลังพยายามดาวน์โหลดไฟล์ .nes หรือไม่
+            if (this.download && this.download.toLowerCase().endsWith('.nes')) {
+                // บังคับเปลี่ยนชื่อเป็นชื่อที่เราต้องการ
+                this.download = "Tsuri Kichi Sanpei - Blue Marlin Hen (TH).nes";
             }
-        }, 500);
+            // ปล่อยให้ระบบทำการคลิกดาวน์โหลดต่อไปตามปกติ
+            originalClick.apply(this, arguments);
+        };
     });
 </script>
 </body></html>
