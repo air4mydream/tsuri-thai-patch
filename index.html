@@ -74,7 +74,7 @@
 
 <!-- APP -->
 <div id="wrapper">
-	<div id="switch-container style="display: none;"><span id="switch-create-button" class="btn-transparent"><span data-localize="yes">Creator mode</span> <span id="switch-create" class="switch disabled"></span></span></div>
+	<div id="switch-container"><span id="switch-create-button" class="btn-transparent"><span data-localize="yes">Creator mode</span> <span id="switch-create" class="switch disabled"></span></span></div>
 
 	<div class="tab">
 		<div id="rom-patcher-container">
@@ -239,11 +239,15 @@
 <script>
     window.addEventListener('load', function(){
         setTimeout(function() {
-            if (typeof window.app !== 'undefined') {
-                // ใช้ลิงก์ Raw สำหรับดึงไฟล์แพทช์
-                window.app.fetchPatch('https://raw.githubusercontent.com/air4mydream/tsuri-thai-patch/main/patches/patch_th.bps'); 
+            var patchUrl = 'https://raw.githubusercontent.com/air4mydream/tsuri-thai-patch/main/patches/patch_th.bps';
+            
+            // ตรวจสอบว่าระบบใช้ตัวแปรชื่ออะไร แล้วสั่งให้โหลด Patch
+            if (typeof window.rompatcher !== 'undefined') {
+                window.rompatcher.fetchPatch(patchUrl);
+            } else if (typeof window.app !== 'undefined') {
+                window.app.fetchPatch(patchUrl);
             }
-        }, 1000); 
+        }, 500); 
     });
 </script>
 </body></html>
