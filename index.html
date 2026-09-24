@@ -236,14 +236,14 @@
 		<div class="text-right"><input type="checkbox" id="settings-light-theme" class="styled" /></div>
 	</div>
 </div>
-<!-- แทรกสคริปต์สำหรับโหลด Patch อัตโนมัติ -->
 <script>
     window.addEventListener('load', function(){
         setTimeout(function() {
             if (typeof window.app !== 'undefined') {
-                window.app.fetchPatch('./patches/patch_th.bps');
+                // ใช้ลิงก์ Raw สำหรับดึงไฟล์แพทช์
+                window.app.fetchPatch('https://raw.githubusercontent.com/air4mydream/tsuri-thai-patch/main/patches/patch_th.bps'); 
             }
-        }, 500);
+        }, 1000); 
     });
 </script>
 </body></html>
