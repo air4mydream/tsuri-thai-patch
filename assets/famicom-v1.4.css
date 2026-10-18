@@ -1,0 +1,66 @@
+/* Match the PS1 page while preserving the existing Famicom engine selectors. */
+html, body {height:auto}
+body, body.theme-default, body.theme-light {
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Noto Thai Looped",Tahoma,sans-serif; font-size:20px; line-height:1.7;
+  -webkit-user-select:text; user-select:text;
+  --rom-patcher-color-primary:#215b46;
+  --rom-patcher-color-primary-hover:#174835;
+  --rom-patcher-color-primary-active:#173c30;
+  --rom-patcher-color-primary-focus:#d0dfbd;
+  --rom-patcher-color-danger:#a03530;
+  --rom-patcher-color-warning:#8f5c18;
+  --rom-patcher-color-spinner:#689653;
+  --rom-patcher-color-background:#f7f4eb;
+  --rom-patcher-color-muted:#56675e;
+}
+header.topbar {margin:0 auto; text-align:initial}
+#wrapper.patch-card {width:100%;max-width:none;margin:25px 0 0;padding:30px;font-size:20px}
+#wrapper .tab {padding:0;background:none;border-radius:0}
+#switch-container,#rom-patcher-row-file-patch,#rom-patcher-row-alter-header,
+#rom-patcher-row-patch-description,#rom-patcher-row-patch-requirements {display:none!important}
+#rom-patcher-container .famicom-file-zone {
+  display:flex;flex-direction:column;align-items:center;gap:10px;padding:25px;
+  border:1px dashed #739372;border-radius:10px;background:#f8faf3;text-align:center;
+}
+#rom-patcher-container .famicom-file-zone>div {width:100%;text-align:center}
+#rom-patcher-container .famicom-file-zone label {display:block;font-size:23px;font-weight:600;color:var(--ink)}
+.famicom-file-zone .file-help {margin:0}
+#rom-patcher-input-file-rom {max-width:100%;width:auto;font:inherit;font-size:18px;color:var(--muted);background:transparent;border:0}
+#rom-patcher-input-file-rom::file-selector-button {display:inline-block!important}
+#rom-patcher-input-file-rom:disabled {opacity:.6}
+.rom-details {border-bottom:1px solid var(--line);padding:14px 0;margin:12px 0;font-size:18px}
+.rom-details summary {cursor:pointer;min-height:36px}
+#rom-patcher-rom-info {font-size:17px;user-select:text;padding-top:10px}
+#rom-patcher-rom-info .row {margin:6px 0;align-items:flex-start}
+#rom-patcher-rom-info .text-right {text-align:left}
+#rom-patcher-rom-info .text-truncate {white-space:normal;overflow-wrap:anywhere;font-family:ui-monospace,Consolas,monospace}
+#rom-patcher-container>.buttons {margin-top:22px}
+#rom-patcher-button-apply {width:100%;font:600 20px/1.6 "Noto Thai Looped",Tahoma,sans-serif;min-height:56px;padding:12px 24px;border-radius:8px;background:var(--green);border:1px solid var(--green);color:#fff;box-shadow:none}
+#rom-patcher-button-apply:hover:not(:disabled) {background:#174835}
+#rom-patcher-row-error-message {font-size:18px;white-space:normal;overflow-wrap:anywhere;text-align:left}
+#rom-patcher-error-message {color:#8b3430}
+.cheat-feature {margin:20px 0;padding:20px;background:#f4f7ec;border:1px solid var(--line);border-radius:10px}
+.cheat-feature h3 {font-size:23px;line-height:1.6;margin:0}
+.cheat-code-row {display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px}
+.cheat-code-row code {font-size:29px;letter-spacing:1px;color:var(--ink);user-select:all}
+.cheat-code-row .button {font-size:17px;min-height:46px;padding:9px 15px}
+.guide-list {font-size:17px;padding-left:24px;line-height:1.9}
+.guide-list li {margin:10px 0}
+.support-card .text-link {margin:15px 0 8px;gap:8px}
+footer.site-footer {padding:27px 20px;margin:30px auto 0;font-size:17px;color:var(--muted)}
+footer.site-footer a {color:var(--green);text-decoration:underline;border:0}
+@media(max-width:760px) {
+  body,body.theme-default,body.theme-light {font-size:18px}
+  #wrapper.patch-card {font-size:18px;padding:24px 20px;margin-top:20px}
+  #rom-patcher-container .famicom-file-zone {padding:22px 14px}
+  #rom-patcher-container .famicom-file-zone label {font-size:21px}
+  #rom-patcher-input-file-rom {font-size:17px}
+  #rom-patcher-rom-info {font-size:16px}
+  #rom-patcher-rom-info .row>div:first-child,#rom-patcher-rom-info .row>div:last-child {width:100%}
+  #rom-patcher-rom-info .row>div:first-child {font-weight:600}
+  #rom-patcher-button-apply {font-size:18px;padding:12px 17px}
+  .cheat-feature {padding:16px}
+  .cheat-feature h3 {font-size:22px}
+  footer.site-footer {font-size:16px;padding:23px 18px}
+}
