@@ -122,17 +122,32 @@
 <div class="support-grid">
 <section class="support-card" aria-labelledby="cheats-title"><span class="section-tag">ตัวเลือกเพิ่มเติม</span><h2 id="cheats-title">Cheats สูตรเสริมสำหรับ Famicom</h2><p>แยกจากแพตช์ภาษาไทย เลือกเปิดใช้เองได้ตามต้องการ</p>
 <div class="cheat-feature"><h3>ล็อกสายเอ็นไม่ให้ขาด</h3><p class="hint">Freeze Tension · ผู้แปลทดสอบกับ Mesen 2.1.1 แล้ว</p><div class="cheat-code-row"><code id="freeze-tension-code">0037:00</code><button id="copy-cheat" class="button secondary" type="button">คัดลอกสูตร</button></div><p id="copy-status" class="hint" role="status" aria-live="polite"></p></div>
-<details open><summary>วิธีใช้ใน Mesen 2.1.1</summary><ol class="guide-list"><li>เปิดเกม แล้วไปที่ <strong>Tools → Cheats → Add</strong></li><li>ตั้งชื่อ <strong>Freeze Tension</strong> แล้วเลือก Format: <strong>Custom (AAAA:VV:CC)</strong></li><li>วางสูตร <code>0037:00</code> โดยไม่ต้องเติมค่า Compare</li><li>ติ๊ก <strong>Cheat Enabled</strong> แล้วกด <strong>OK</strong></li><li>เอาเครื่องหมายถูกออกจาก <strong>Disable all cheats</strong> แล้วกด <strong>OK</strong> เพื่อกลับเข้าเกม</li></ol><p>ต้องการปิดสูตร ให้เอาเครื่องหมายถูกหน้าสูตรออก</p></details>
-<a class="text-link" href="./downloads/Freeze_Tension_Mesen_TH.txt" download>ดาวน์โหลดสูตรและคู่มือ Mesen ↓</a>
-<details><summary>ใช้กับ FCEUX หรืออีมูอื่นได้ไหม?</summary><p>FCEUX รองรับการตรึง RAM ที่ Address <code>0037</code> และ Value <code>00</code> เช่นกัน มีไฟล์ .cht ให้ลองนำเข้า โดยสูตรเริ่มต้นเป็นปิดไว้ ผลในเกมยังไม่ได้ทดสอบกับ FCEUX</p><p><a href="./downloads/BlueMarlin_FreezeTension_FCEUX.cht" download>ดาวน์โหลด .cht สำหรับ FCEUX</a> · <a href="./downloads/CHEATS_COMPATIBILITY_TH.txt">อ่านวิธีใช้และข้อจำกัด</a></p><p>อีมูอื่นต้องรองรับสูตร RAM/Raw ของ NES จึงจะนำค่าเดียวกันไปทดลองได้ ไฟล์ .cht ของแต่ละอีมูใช้แทนกันไม่ได้เสมอ</p></details>
-<p class="hint">สูตรนี้เป็น RAM/Raw จึงแปลงเป็นรหัส NES Game Genie โดยตรงไม่ได้ หากอีมูรับเฉพาะ Game Genie ต้องวิเคราะห์โค้ดเกมเพื่อสร้างสูตรอีกแบบ</p>
+<details open><summary>วิธีใส่สูตรใน Mesen / MesenCE</summary><ol class="guide-list">
+<li>เปิดเกม แล้วเลือกเมนู <strong>Tools → Cheats</strong> จากนั้นกด <strong>Add</strong></li>
+<li>ช่อง <strong>Description:</strong> ใส่ <strong>Freeze Tension</strong></li>
+<li>ช่อง <strong>Cheat Enabled:</strong> ติ๊กเครื่องหมายถูก</li>
+<li>ส่วน <strong>Codes → Format:</strong> เลือก <strong>Custom (AAAA:VV:CC)</strong></li>
+<li>ช่อง <strong>Codes:</strong> วางสูตร <code>0037:00</code> โดยไม่ต้องเติมค่า Compare</li>
+<li>กด <strong>OK</strong> เพื่อเพิ่มสูตรและกลับไปหน้ารวม Cheats</li>
+<li>ตรวจว่ารายการ <strong>Freeze Tension</strong> มีเครื่องหมายถูก และเอาเครื่องหมายถูกออกจาก <strong>Disable all cheats</strong></li>
+<li>กด <strong>OK</strong> เพื่อกลับเข้าเกม สูตรจะทำงานขณะเล่น</li>
+</ol><p><strong>วิธีปิดสูตร:</strong> กลับไปที่ Tools → Cheats เอาเครื่องหมายถูกหน้ารายการ Freeze Tension ออก แล้วกด OK</p><p class="hint">ใช้วิธีกรอกรหัสใน Custom สำหรับ Mesen / MesenCE ส่วนไฟล์ .cht ด้านล่างจัดไว้สำหรับ FCEUX</p><a class="text-link" href="./downloads/Freeze_Tension_Mesen_TH.txt" download>ดาวน์โหลดคู่มือ Mesen / MesenCE ↓</a></details>
+<details open><summary>วิธี Import และใช้สูตรใน FCEUX</summary><ol class="guide-list">
+<li><a href="./downloads/BlueMarlin_FreezeTension_FCEUX.cht" download>ดาวน์โหลดไฟล์ BlueMarlin_FreezeTension_FCEUX.cht</a> แล้วบันทึกไว้ในเครื่อง</li>
+<li>เปิดเกมใน FCEUX แล้วเลือกเมนู <strong>Tools → Cheats</strong></li>
+<li>กดปุ่ม <strong>Import...</strong> ในหน้าต่าง Cheats</li>
+<li>เลือกไฟล์ <strong>BlueMarlin_FreezeTension_FCEUX.cht</strong> ที่ดาวน์โหลดไว้ แล้วกด <strong>Open / เปิด</strong></li>
+<li>เมื่อเห็นรายการ <strong>Freeze Tension (John Lowery)</strong> ให้ติ๊กเครื่องหมายถูกหน้ารายการเพื่อเปิดใช้ สูตรในไฟล์เริ่มต้นเป็นปิดไว้</li>
+<li>ปิดหน้าต่าง Cheats แล้วกลับไปเล่นเกม สูตรที่เปิดไว้จะทำงานระหว่างเล่น</li>
+</ol><p><strong>วิธีปิดสูตร:</strong> กลับไปที่ Tools → Cheats แล้วเอาเครื่องหมายถูกหน้ารายการ Freeze Tension ออก</p><p class="hint">ตรวจค่าในรายการสูตรได้ที่ Address: <code>0037</code> และ Value: <code>00</code> ไม่ต้องใส่ Compare</p><p><a href="./downloads/BlueMarlin_FreezeTension_FCEUX.cht" download>ดาวน์โหลด .cht สำหรับ FCEUX</a> · <a href="./downloads/Freeze_Tension_FCEUX_TH.txt" download>ดาวน์โหลดคู่มือ FCEUX</a></p></details>
+<details><summary>ใช้กับอีมูอื่นได้ไหม?</summary><p>อีมูอื่นต้องรองรับสูตร RAM/Raw ของ NES จึงจะนำค่า Address <code>0037</code> และ Value <code>00</code> ไปทดลองได้ ไฟล์ .cht ของแต่ละอีมูใช้แทนกันไม่ได้เสมอ</p><p>สูตรนี้แปลงเป็นรหัส NES Game Genie โดยตรงไม่ได้ หากอีมูรับเฉพาะ Game Genie ต้องวิเคราะห์โค้ดเกมเพื่อสร้างสูตรอีกแบบ</p><a href="./downloads/CHEATS_COMPATIBILITY_TH.txt">อ่านข้อมูลความเข้ากันได้ของสูตร</a></details>
 </section>
 <section class="support-card" aria-labelledby="help-title"><span class="section-tag">ก่อนออกเดินทาง</span><h2 id="help-title">สิ่งที่ควรรู้</h2>
 <details><summary>ต้องใช้ไฟล์เกมแบบไหน?</summary><p>ใช้ Tsurikichi Sanpei: Blue Marlin Hen ภาษาญี่ปุ่นสำหรับ Famicom แบบ .nes ที่ตรงกับแพตช์เดิม ขนาด <strong>131,088 ไบต์</strong> รวมส่วนหัว iNES หากเก็บเป็น ZIP ให้แตกไฟล์ก่อนเลือก</p></details>
 <details><summary>ขึ้นว่า ROM ไม่ตรง ต้องทำอย่างไร?</summary><p>เลือกต้นฉบับญี่ปุ่นที่ยังไม่แปะแพตช์และเป็นรุ่นที่รองรับ ชื่อไฟล์เปลี่ยนได้ แต่ข้อมูลต้องตรง หากเป็นรอมต่างรุ่นหรือส่วนหัวต่างกัน ระบบจะไม่ยอมแปะแพตช์</p></details>
 <details><summary>แปะแพตช์เสร็จแล้วเล่นอย่างไร?</summary><p>เบราว์เซอร์จะบันทึกไฟล์ .nes ฉบับภาษาไทย นำไฟล์ที่ได้ไปเปิดใน Mesen หรืออีมู Famicom ที่คุณใช้ หากเบราว์เซอร์ถามสิทธิ์ดาวน์โหลด ให้กดยอมรับ</p></details>
 <details><summary>ต้องเปิดสูตรก่อนแปะแพตช์ไหม?</summary><p>ไม่ต้องเปิดสูตรตอนแปะแพตช์ สูตรเปิดและปิดในอีมูขณะเล่นได้ ส่วน ROM ภาษาไทยใช้งานได้ตามปกติโดยไม่เปิดสูตร</p></details>
-<details><summary>สูตรเปิดแล้วแต่ไม่ทำงาน?</summary><p>ใน Mesen ตรวจว่าเลือก Custom และกรอก <code>0037:00</code> เปิด Cheat Enabled แล้วเอาเครื่องหมายถูกออกจาก Disable all cheats สูตรใช้กับเกม Famicom ภาคนี้เท่านั้น</p></details>
+<details><summary>สูตรเปิดแล้วแต่ไม่ทำงาน?</summary><p><strong>Mesen / MesenCE:</strong> ตรวจว่าเลือก Custom และกรอก <code>0037:00</code> ติ๊ก Cheat Enabled และเอาเครื่องหมายถูกออกจาก Disable all cheats</p><p><strong>FCEUX:</strong> หลัง Import ต้องติ๊กเครื่องหมายถูกหน้ารายการ Freeze Tension ด้วย เพราะไฟล์เริ่มต้นปิดสูตรไว้ ตรวจ Address <code>0037</code> และ Value <code>00</code> สูตรใช้กับเกม Famicom ภาคนี้เท่านั้น</p></details>
 <details><summary>ข้อมูลแพตช์และ CRC32 ที่รองรับ</summary><dl class="hashes"><dt>ต้นฉบับญี่ปุ่น · CRC32 ทั้งไฟล์ .nes</dt><dd><code>FED6FAF9</code></dd><dt>ผลลัพธ์ภาษาไทย · CRC32 ทั้งไฟล์ .nes</dt><dd><code>B6D4D383</code></dd></dl><p>ไฟล์แพตช์ภาษาไทยเป็นไฟล์เดิมที่แจกอยู่ เปลี่ยนเฉพาะหน้าเว็บและเพิ่มสูตรแยก</p><a href="./patches/patch_th.bps" download>ดาวน์โหลด BPS แยก</a></details>
 </section></div>
 </main><footer class="site-footer"><p>แพตช์ภาษาไทย และ Cheats โดย John Lowery · แจกฟรี ห้ามจำหน่าย</p><p class="tool-credit">เครื่องมือแปะแพตช์: Rom Patcher JS โดย Marc Robledo · <a href="./LICENSE">ไลเซนส์เครื่องมือ</a></p></footer>

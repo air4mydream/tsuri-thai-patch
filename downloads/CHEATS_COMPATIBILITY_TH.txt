@@ -1,64 +1,36 @@
-Freeze Tension — ความเข้ากันได้ของอีมู
+Freeze Tension — ความเข้ากันได้ของสูตร
 เกม: Tsurikichi Sanpei: Blue Marlin Hen / Famicom
 แพตช์ภาษาไทย และ Cheats โดย John Lowery · แจกฟรี ห้ามจำหน่าย
 
-ข้อมูลต้นทางจากสูตรที่ผู้แปลใช้ใน Mesen 2.1.1
-Custom code: 0037:00
-CPU address (hex): 0037
-Value (hex): 00
-Compare: ไม่ใช้
+Mesen / MesenCE
+Tools → Cheats → Add
+Description: Freeze Tension
+Cheat Enabled: ติ๊กถูก
+Codes → Format: Custom (AAAA:VV:CC)
+Codes: 0037:00
+กด OK แล้วตรวจว่า Disable all cheats ไม่ถูกติ๊ก จากนั้นกด OK เพื่อกลับเกม
+คู่มือเต็ม: Freeze_Tension_Mesen_TH.txt
+ผู้แปลยืนยันการกรอกสูตรในทั้งสองโปรแกรม และเคยทดสอบผลใน Mesen 2.1.1 แล้ว
 
-1) Mesen 2.1.1 — ผู้แปลทดสอบสูตรแล้ว
-ใช้ Tools → Cheats → Add เลือก Custom (AAAA:VV:CC) แล้วกรอก 0037:00
-ติ๊ก Cheat Enabled และเอาเครื่องหมายถูกออกจาก Disable all cheats
-อ่านขั้นตอนเต็มใน Freeze_Tension_Mesen_TH.txt
-Mesen 2.1.1 ในรูปมี Add, Edit, Delete, Cheat database
-จึงแนะนำการคัดลอกรหัสลง Custom โดยตรง ไม่อ้างเมนู Import/Export ของ Mesen 0.9.9 รุ่นเก่า
+FCEUX
+Tools → Cheats → Import...
+เลือก BlueMarlin_FreezeTension_FCEUX.cht แล้วกด Open
+ติ๊กเครื่องหมายถูกหน้ารายการ Freeze Tension (John Lowery) เพื่อเปิดใช้
+ไฟล์เริ่มต้นเป็นปิดอยู่ การ Import อย่างเดียวยังไม่ได้เปิดสูตร
+คู่มือเต็ม: Freeze_Tension_FCEUX_TH.txt
+ผู้แปลยืนยันการนำเข้าไฟล์ใน FCEUX แล้ว ผลในเกมยังควรตรวจสอบเพิ่มเติม
 
-2) FCEUX — จัดไฟล์ตามรูปแบบทางการ แต่ยังไม่ได้ทดสอบผลในเกม
-ไฟล์: BlueMarlin_FreezeTension_FCEUX.cht
-บรรทัดในไฟล์: :0037:00:Freeze Tension (John Lowery)
-เครื่องหมาย : ที่หน้าสุดหมายถึงเริ่มต้นเป็นปิด
-เป็น RAM patch แบบเขียนค่า จึงไม่ใส่ S ซึ่งหมายถึง read substitution
-
-วิธีใช้ไฟล์
-- เปิดเกมใน FCEUX
-- เปิดหน้าต่าง Cheats/Cheat Search แล้วกด Import... เพื่อเลือกไฟล์ .cht ที่แจก
-  ตามคู่มือ FCEUX สามารถลาก .cht ลงหน้าต่างอีมูได้เช่นกัน
-- เปิดเครื่องหมายถูกหน้าสูตร Freeze Tension
-- ทดลองขณะสู้ปลา ตรวจว่าแรงตึงสายคงอยู่และจับปลาได้ตามปกติ
-- เมื่อต้องการปิด ให้เอาเครื่องหมายถูกหน้าสูตรออก
-
-วิธีกรอกด้วยตนเอง
-เปิด Cheats/Cheat Search ใส่ Address: 0037 และ Value: 00
-ไม่ต้องใส่ Compare เลือกเป็น RAM patch แบบเขียนค่า แล้วกด Add
-ชื่อรายการและเมนูอาจต่างกันตามระบบปฏิบัติการหรือรุ่น FCEUX
-
-ข้อจำกัดที่ต้องทราบ
-Mesen Custom อ่านค่าจาก CPU address แทนค่าที่เกมเห็น ส่วน FCEUX RAM patch
-เขียนค่าตามรอบเวลา การใช้ Address/Value เดียวกันจึงไม่ได้ยืนยันว่าให้ผลเหมือนกันทุกจังหวะ
-FCEUX ไม่เหมาะกับการใช้ read substitution ใน zero page ($0000-$00FF)
-ดังนั้นต้องทดสอบเกมจริงก่อนประกาศว่ารองรับ FCEUX เต็มรูปแบบ
-
-3) อีมูอื่น / RetroArch
-ต้องตรวจว่ารองรับ RAM/Raw cheat ของ NES หรือไม่ และใช้ address ในหน่วยความจำส่วนใด
-หากรองรับ CPU RAM address แบบเดียวกัน ค่าตั้งต้นสำหรับนำไปทดลองคือ
-8-bit, Address 0x0037, Value 0x00, ไม่มี Compare
+ข้อจำกัด
+0037:00 เป็นสูตร RAM/Raw ของ NES ใช้ CPU Address 0x0037, Value 0x00 และไม่มี Compare
+Mesen ใช้การแทนค่าที่อ่าน ขณะที่ FCEUX RAM patch เขียนค่าเป็นรอบ
+การใช้ Address/Value เดียวกันจึงไม่ได้รับรองผลเหมือนกันทุกจังหวะ
+ไฟล์ .cht ของ FCEUX, RetroArch และ DuckStation ไม่ใช่รูปแบบเดียวกันทั้งหมด
 ยังไม่มีไฟล์หรือผลทดสอบสำหรับอีมูอื่นในชุดนี้
-อย่านำไฟล์ FCEUX .cht ไปใช้กับ RetroArch หรือ DuckStation โดยถือว่าเป็นรูปแบบเดียวกัน
+NES Game Genie ใช้ที่อยู่ PRG ช่วง $8000-$FFFF จึงแปลง $0037 เป็น Game Genie ตรงๆ ไม่ได้
+หากต้องการ Game Genie ต้องวิเคราะห์คำสั่งเกมและสร้างสูตรอีกชุด
 
-4) Game Genie
-0037:00 เป็น RAM/Raw code ไม่ใช่ NES Game Genie
-Game Genie มาตรฐานใช้ที่อยู่ PRG ช่วง $8000-$FFFF จึงแปลง $0037 เป็น Game Genie ตรงๆ ไม่ได้
-หากต้องรองรับอีมูที่รับเฉพาะ Game Genie ต้องตามหาโค้ดเกมที่คำนวณแรงตึงหรือเช็กสายขาด
-แล้วสร้างสูตรแก้คำสั่งใน PRG-ROM อีกชุด พร้อมทดสอบแยก
-
-แหล่งอ้างอิงทางการ (ตรวจเมื่อ 18 ตุลาคม 2026)
-FCEUX Cheat Search / ไฟล์ .cht และการนำเข้า:
+แหล่งอ้างอิง
 https://fceux.com/web/help/CheatSearch.html
-FCEUX Game Genie Encoder/Decoder / ช่วงที่อยู่:
 https://fceux.com/web/help/GameGenieEncoderDecoder.html
-ซอร์ส Mesen 2 / Custom code parser และลักษณะการใช้สูตร:
 https://github.com/SourMesen/Mesen2/blob/master/Core/Shared/CheatManager.cpp
-เมนู Mesen 2 และตัวเลือก Disable all cheats:
-https://github.com/SourMesen/Mesen2/blob/master/UI/ViewModels/CheatListWindowViewModel.cs
+ข้อมูลเมนู Mesen / MesenCE และ FCEUX อ้างอิงจากการตรวจของผู้แปลในวันที่ 18 ตุลาคม 2026
