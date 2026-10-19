@@ -1,0 +1,12 @@
+/* Source ROM identifiers; visual layer only, no patcher changes. */
+.rom-source-card{margin:25px 0 0}
+.rom-source-card h2{margin:0;font-size:30px;line-height:1.5}
+.rom-source-facts{margin:16px 0;font-size:18px;line-height:1.8}
+.rom-source-facts dt{margin-top:12px;font-weight:650;color:var(--ink)}
+.rom-source-facts dd{margin:4px 0 0;overflow-wrap:anywhere;min-width:0}
+.rom-source-facts code{font-size:17px;word-break:break-word;user-select:all}
+.game-card .rom-source-box{margin:0 10px 20px;padding:12px 16px;border:1px solid var(--line);border-radius:9px;background:var(--paper);font-size:17px}
+.rom-source-box summary{cursor:pointer;min-height:40px;font-weight:600;line-height:1.7;padding:5px 0}
+.rom-source-box .rom-source-facts{font-size:17px;margin:8px 0}
+.rom-source-box .hint{font-size:16px;margin:12px 0 0;line-height:1.8}
+@media(max-width:760px){.rom-source-card{margin-top:20px}.rom-source-card h2{font-size:27px}.rom-source-facts{font-size:17px}.rom-source-facts code{font-size:16px}.game-card .rom-source-box{margin:0 4px 18px}}

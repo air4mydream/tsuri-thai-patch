@@ -1,0 +1,27 @@
+ข้อมูลรอมต้นฉบับสำหรับแพตช์ภาษาไทย โดย John Lowery
+
+Famicom / NES
+ชื่อไฟล์อ้างอิง: Tsuri Kichi Sanpei - Blue Marlin Hen (Japan).nes
+SHA-1: A326FD5F72219316375E44633B9548F6BA7FFD8F
+ขนาด: 131,088 ไบต์
+CRC32: FED6FAF9
+ขอบเขตค่าแฮช: ไฟล์ .nes ทั้งไฟล์ รวมส่วนหัว iNES 16 ไบต์
+อ้างอิง: Libretro Database · No-Intro / Nintendo Entertainment System (DAT version 2026.10.07)
+https://raw.githubusercontent.com/libretro/libretro-database/master/metadat/no-intro/Nintendo%20-%20Nintendo%20Entertainment%20System.dat
+
+PlayStation 1
+ชื่อไฟล์อ้างอิง: Simple Character 2000 Series Vol. 09 - Tsurikichi Sanpei - The Tsuri (Japan).bin
+SHA-1: F31C11A9004E851D6710B9B7C088AF1195EA1C65
+ขนาด: 266,077,056 ไบต์
+CRC32: 1463101C
+ขอบเขตค่าแฮช: ไฟล์ .bin ต้นฉบับทั้งแผ่น แบบแทร็กเดียว ขนาดเซกเตอร์ 2352 ไบต์
+อ้างอิง: Libretro Database · Redump / Sony PlayStation (DAT version 2026.10.07)
+https://raw.githubusercontent.com/libretro/libretro-database/master/metadat/redump/Sony%20-%20PlayStation.dat
+
+ค่าเหล่านี้เป็นของต้นฉบับญี่ปุ่นก่อนแปะแพตช์ ไม่ใช่ ZIP หรือไฟล์ภาษาไทย
+Famicom ต้องเป็น .nes แบบมีส่วนหัว iNES 16 ไบต์; ไฟล์แบบไม่มีส่วนหัวให้ค่าแฮชต่างกัน
+PS1 ต้องตรวจ .bin ทั้งแผ่น ไม่ใช่ .cue หรือไฟล์ที่ Export แยกจากอิมเมจ
+ชื่อไฟล์เป็นชื่ออ้างอิงตามฐานข้อมูล ไม่ใช่เงื่อนไขเดียวในการยืนยันว่ารอมตรง
+ระบบแปะแพตช์ยังตรวจข้อมูลไฟล์ตามเกณฑ์เดิม
+ค่า SHA-1 อ้างอิงจาก DAT และจับคู่กับขนาด/CRC32 ของต้นฉบับที่แพตช์รองรับ
+ไม่ได้คำนวณ SHA-1 ใหม่จากไฟล์รอมจริงในรอบงานนี้
